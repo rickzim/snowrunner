@@ -11,7 +11,7 @@
             const img = this.$refs.img
             if (!img) return
     
-            const w = img.clientWidth
+            const w = 24 + img.clientWidth
             const h = img.clientHeight
     
             if (w === 0 || h === 0) {
