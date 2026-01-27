@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('type');
             $table->string('description')->nullable();
             $table->foreignIdFor(Map::class)->constrained()->cascadeOnDelete();
+            $table->unsignedInteger('map_x')->default(0);
+            $table->unsignedInteger('map_y')->default(0);
             $table->boolean('is_unlocked')->default(true);
             $table->timestamps();
         });

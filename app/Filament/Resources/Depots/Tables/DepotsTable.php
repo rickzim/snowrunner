@@ -2,7 +2,9 @@
 
 namespace App\Filament\Resources\Depots\Tables;
 
+use App\Models\Region;
 use Filament\Tables\Table;
+use Filament\Actions\Action;
 use Filament\Actions\EditAction;
 use Filament\Tables\Grouping\Group;
 use Filament\Actions\BulkActionGroup;
@@ -13,7 +15,6 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use App\Filament\Tables\Columns\DepotColumn;
 use App\Filament\Tables\Columns\ResourceColumn;
-use App\Models\Region;
 
 class DepotsTable
 {
@@ -59,7 +60,6 @@ class DepotsTable
                             return null;
                         }
 
-
                         return 'Region: ' . Region::findOrFail($data['value'])->name;
                     }),
 
@@ -78,14 +78,19 @@ class DepotsTable
                 Group::make('map.region.name')->collapsible(),
                 Group::make('map.name')->collapsible(),
             ])
-
             ->recordActions([
-                // EditAction::make(),
+                Action::make('viewOnMap')
+                    ->label('View on map')
+                    ->icon('heroicon-o-map')
+                    ->modalHeading(fn($record) => $record->type->getLabel())
+                    ->modalSubmitAction(false)
+                    ->modalCancelActionLabel('Close')
+                    ->modalContent(fn($record) => view('depot-map.depot-map', [
+                        'depot' => $record,
+                    ]))
             ])
             ->toolbarActions([
-                // BulkActionGroup::make([
-                //     DeleteBulkAction::make(),
-                // ]),
+                //
             ]);
     }
 }

@@ -35,7 +35,12 @@ class DataSeeder extends Seeder
         /**
          * Black River
          */
-        $map = $region->maps()->create(['name' => 'Black River']);
+        $map = $region->maps()->create([
+            'name' => 'Black River',
+            'width' => 1000,
+            'height' => 1000,
+            'image_path' => 'black-river.webp'
+        ]);
         static::createDepot($map, DepotType::FACTORY, ['Service Spare Parts']);
         static::createDepot($map, DepotType::WAREHOUSE, ['Bricks', 'Concrete Blocks', 'Metal Beams', 'Service Spare Parts']);
         static::createDepot($map, DepotType::LOG_STATION, ['Long Logs', 'Medium Logs']);
