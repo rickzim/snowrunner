@@ -2,10 +2,9 @@
 
 namespace App\Enums;
 
-use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 
-enum DepotType: string implements HasLabel, HasIcon
+enum DepotType: string implements HasLabel
 {
     /** Generic */
     case FACTORY = 'FCTY'; // General production buildings
