@@ -27,21 +27,18 @@ class DepotsTable
                 TextColumn::make('resources.display_name')
                     ->badge()
                     ->color(function (string $state, $record, $livewire) {
-                        $activeResourceId = data_get(
-                            $livewire->tableFilters,
-                            'resource_id.value'
-                        );
+                        $activeIds = data_get($livewire->tableFilters, 'resource_id.values', []);
 
-                        if (! $activeResourceId) {
+                        if (! $activeIds) {
                             return 'gray';
                         }
 
                         $resource = $record->resources
                             ->firstWhere('display_name', $state);
 
-                        return $resource?->id == $activeResourceId
-                            ? 'primary'   // highlighted
-                            : 'gray';     // dimmed
+                        return in_array($resource?->id, $activeIds)
+                            ? 'primary'
+                            : 'gray';
                     }),
 
                 IconColumn::make('is_unlocked')
@@ -58,6 +55,8 @@ class DepotsTable
             ->filters([
                 SelectFilter::make('resource_id')
                     ->relationship('resources', 'name')
+                    ->multiple()
+                    ->searchable()
             ])
             ->recordActions([
                 EditAction::make(),
