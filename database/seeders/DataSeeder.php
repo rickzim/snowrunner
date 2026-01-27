@@ -69,58 +69,42 @@ class DataSeeder extends Seeder
     private function createResources()
     {
         collect([
-            ['name' => 'Bricks', 'tons' => 1, 'size' => 1],
-            ['name' => 'Cement', 'tons' => 3, 'size' => 1],
-            ['name' => 'Concrete Blocks', 'tons' => 3, 'size' => 1],
-            ['name' => 'Concrete Slab', 'tons' => 6, 'size' => 2],
-            ['name' => 'Packaged Sand', 'tons' => 3, 'size' => 1],
-            ['name' => 'Consumables', 'tons' => 3, 'size' => 1],
-            ['name' => 'Fuel', 'tons' => 2, 'size' => 1],
-            ['name' => 'Oil Barrels', 'tons' => 2, 'size' => 1],
-            ['name' => 'Secure Container', 'tons' => 1, 'size' => 1],
-            ['name' => 'Service Spare Parts', 'tons' => 1, 'size' => 1],
-            ['name' => 'Vehicle Spare Parts', 'tons' => 1, 'size' => 1],
-            ['name' => 'Drilling Spare Parts', 'tons' => 1, 'size' => 1],
+            ['name' => 'Bricks', 'tons' => 1, 'size' => 1, 'icon' => 'cargoTypeBrick40.png'],
+            ['name' => 'Cement', 'tons' => 3, 'size' => 1, 'icon' => 'cargoTypeBags40.png'],
+            ['name' => 'Concrete Blocks', 'tons' => 3, 'size' => 1, 'icon' => 'cargoTypeBlock40.png'],
+            ['name' => 'Concrete Slab', 'tons' => 6, 'size' => 2, 'icon' => 'cargoTypeSlabBig40.png'],
+            ['name' => 'Packaged Sand', 'tons' => 3, 'size' => 1, 'icon' => 'cargoTypeSand40.png'],
+            ['name' => 'Consumables', 'tons' => 3, 'size' => 1, 'icon' => 'cargoTypeBigBox40.png'],
+            ['name' => 'Fuel', 'tons' => 2, 'size' => 1, 'icon' => 'cargoTypeBarrel40.png'],
+            ['name' => 'Oil Barrels', 'tons' => 2, 'size' => 1, 'icon' => 'cargoTypeBarrelMasut40.png'],
+            ['name' => 'Secure Container', 'tons' => 1, 'size' => 1, 'icon' => 'cargoTypeRadioactive40.png'],
+            ['name' => 'Service Spare Parts', 'tons' => 1, 'size' => 1, 'icon' => 'cargoTypeServiceSpareParts40.png'],
+            ['name' => 'Vehicle Spare Parts', 'tons' => 1, 'size' => 1, 'icon' => 'cargoTypeVehiclesSpareParts40.png'],
+            ['name' => 'Drilling Spare Parts', 'tons' => 1, 'size' => 1, 'icon' => 'cargoTypeSparePartsTown40.png'],
 
-            ['name' => 'Drilling Equipment', 'tons' => 10, 'size' => 4],
-            ['name' => 'Oil Rig Drill', 'tons' => 10, 'size' => 5],
+            ['name' => 'Drilling Equipment', 'tons' => 10, 'size' => 4, 'icon' => 'cargoTypeContainerDrilling40.png'],
+            ['name' => 'Oil Rig Drill', 'tons' => 10, 'size' => 5, 'icon' => 'cargoTypeBigDrills40.png'],
 
-            ['name' => 'Metal Rolls', 'tons' => 1, 'size' => 1],
-            ['name' => 'Metal Beams', 'tons' => 5, 'size' => 2],
-            ['name' => 'Small Pipes', 'tons' => 4, 'size' => 2],
-            ['name' => 'Medium Pipes', 'tons' => 5, 'size' => 2],
-            ['name' => 'Large Pipe', 'tons' => 8, 'size' => 4],
+            ['name' => 'Metal Rolls', 'tons' => 1, 'size' => 1, 'icon' => 'cargoTypeSteelRoll40.png'],
+            ['name' => 'Metal Beams', 'tons' => 5, 'size' => 2, 'icon' => 'cargoTypeMetall40.png'],
+            ['name' => 'Small Pipes', 'tons' => 4, 'size' => 2, 'icon' => 'cargoTypePipe40.png'],
+            ['name' => 'Medium Pipes', 'tons' => 5, 'size' => 2, 'icon' => 'cargoTypePipeAverage40.png'],
+            ['name' => 'Large Pipe', 'tons' => 8, 'size' => 4, 'icon' => 'cargoTypePipeBig40.png'],
 
-            ['name' => 'Rail Section', 'tons' => 1, 'size' => 5],
-            ['name' => 'Rails', 'tons' => 1, 'size' => 4],
-            ['name' => 'Industrial Boiler', 'tons' => 1, 'size' => 5],
+            ['name' => 'Rail Section', 'tons' => 1, 'size' => 5, 'icon' => 'cargoTypeRails40.png'],
+            ['name' => 'Industrial Boiler', 'tons' => 1, 'size' => 5, 'icon' => 'cargoTypeBoiler40.png'],
 
-            ['name' => 'Cabin', 'tons' => 3, 'size' => 2],
-            ['name' => 'Cargo Container', 'tons' => 3, 'size' => 2],
-            ['name' => 'Special Cargo', 'tons' => 3, 'size' => 2],
-            ['name' => 'Oversized Cargo', 'tons' => 10, 'size' => 4],
+            ['name' => 'Cabin', 'tons' => 3, 'size' => 2, 'icon' => 'cargoTypeChangeHouse40.png'],
+            ['name' => 'Cargo Container', 'tons' => 3, 'size' => 2, 'icon' => 'cargoTypeContainerAlt40.png'],
+            ['name' => 'Special Cargo', 'tons' => 3, 'size' => 2, 'icon' => 'cargoTypeContainerAlt40.png'],
+            ['name' => 'Oversized Cargo', 'tons' => 10, 'size' => 4, 'icon' => 'cargoTypeContainerAlt40.png'],
 
-            ['name' => 'Cellulose', 'tons' => 2, 'size' => 1],
-            ['name' => 'Wooden Planks', 'tons' => 1, 'size' => 1],
+            ['name' => 'Cellulose', 'tons' => 2, 'size' => 1, 'icon' => 'cargoTypePaper40.png'],
+            ['name' => 'Wooden Planks', 'tons' => 1, 'size' => 1, 'icon' => 'cargoTypePlank40.png'],
 
-            ['name' => 'Short Logs', 'tons' => 4, 'size' => '2*'],
-            ['name' => 'Medium Logs', 'tons' => 8, 'size' => '3*'],
-            ['name' => 'Long Logs', 'tons' => 12, 'size' => '5*'],
-            ['name' => 'Sequoia', 'tons' => 1, 'size' => 5],
-
-            ['name' => 'Airplane Fuselage', 'tons' => 10, 'size' => 5],
-            ['name' => 'Airplane Wing', 'tons' => 2, 'size' => 4],
-            ['name' => 'Airplane Wing/Engine', 'tons' => 2, 'size' => 5],
-
-            ['name' => 'BA-20 Armored Car', 'tons' => 3, 'size' => 2],
-            ['name' => 'Diesel Locomotive', 'tons' => 200, 'size' => 10],
-
-            ['name' => 'Portable Cabin', 'tons' => 3, 'size' => 2],
-            ['name' => 'Engine Assembly', 'tons' => 3, 'size' => 1],
-            ['name' => 'Stage 2 Fuel Tank', 'tons' => 2, 'size' => 3],
-            ['name' => 'Stage 3 Fuel Tank', 'tons' => 2, 'size' => 3],
-
-            ['name' => 'Rocket Carrier Platform', 'tons' => 325, 'size' => 12],
-        ])->each(fn ($item) => Resource::create($item));
+            ['name' => 'Short Logs*', 'tons' => 4, 'size' => 2, 'icon' => 'cargoTypeLogLow40.png'],
+            ['name' => 'Medium Logs*', 'tons' => 8, 'size' => 3, 'icon' => 'cargoTypeLogMid40.png'],
+            ['name' => 'Long Logs*', 'tons' => 12, 'size' => 5, 'icon' => 'cargoTypeLogLong40.png'],
+        ])->each(fn($item) => Resource::create($item));
     }
 }

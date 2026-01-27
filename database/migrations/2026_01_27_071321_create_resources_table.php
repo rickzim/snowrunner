@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedInteger('tons');
             $table->unsignedInteger('size');
+            $table->string('icon')->nullable();
             // $table->boolean('requires_special')->default(false);
             $table->timestamps();
         });

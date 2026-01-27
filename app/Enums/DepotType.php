@@ -43,4 +43,12 @@ enum DepotType: string implements HasLabel
     {
         return str($this->name)->slug('_')->title();
     }
+
+    public function getIcon(): string
+    {
+        return match ($this) {
+            self::GARAGE => 'images/icons/depots/garage.png',
+            default => 'placeholder.png'
+        };
+    }
 }

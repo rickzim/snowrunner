@@ -22,11 +22,6 @@ class DepotResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'type';
 
-    public static function form(Schema $schema): Schema
-    {
-        return DepotForm::configure($schema);
-    }
-
     public static function table(Table $table): Table
     {
         return DepotsTable::configure($table);
@@ -43,8 +38,6 @@ class DepotResource extends Resource
     {
         return [
             'index' => ListDepots::route('/'),
-            'create' => CreateDepot::route('/create'),
-            'edit' => EditDepot::route('/{record}/edit'),
         ];
     }
 }
