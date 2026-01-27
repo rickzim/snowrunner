@@ -2,14 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Map;
-use App\Models\Depot;
-use App\Models\Region;
 use App\Enums\DepotType;
+use App\Models\Region;
 use App\Models\Resource;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DataSeeder extends Seeder
 {
@@ -36,7 +33,7 @@ class DataSeeder extends Seeder
          * Black River
          */
         $map = $region->maps()->create([
-            'name' => 'Black River'
+            'name' => 'Black River',
         ]);
 
         $depot = $map->depots()->create(['type' => DepotType::FACTORY]);
@@ -49,7 +46,7 @@ class DataSeeder extends Seeder
             'Bricks',
             'Concrete Blocks',
             'Metal Beams',
-            'Service Spare Parts'
+            'Service Spare Parts',
         ]));
 
         /**
@@ -124,6 +121,6 @@ class DataSeeder extends Seeder
             ['name' => 'Stage 3 Fuel Tank', 'tons' => 2, 'size' => 3],
 
             ['name' => 'Rocket Carrier Platform', 'tons' => 325, 'size' => 12],
-        ])->each(fn($item) => Resource::create($item));
+        ])->each(fn ($item) => Resource::create($item));
     }
 }

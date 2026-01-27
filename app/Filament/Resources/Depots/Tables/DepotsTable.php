@@ -5,8 +5,8 @@ namespace App\Filament\Resources\Depots\Tables;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
@@ -41,8 +41,8 @@ class DepotsTable
                             : 'gray';
                     }),
 
-                IconColumn::make('is_unlocked')
-                    ->boolean(),
+                ToggleColumn::make('is_unlocked'),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -57,7 +57,9 @@ class DepotsTable
                     ->relationship('resources', 'name')
                     ->multiple()
                     ->searchable()
-            ])
+                    ->preload(),
+            ], \Filament\Tables\Enums\FiltersLayout::AboveContent)
+            ->deferFilters(false)
             ->recordActions([
                 EditAction::make(),
             ])
