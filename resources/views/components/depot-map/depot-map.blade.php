@@ -23,10 +23,7 @@
             const scaleX = w / this.originalWidth
             const scaleY = h / this.originalHeight
     
-            this.markerStyle = `
-                            left: ${this.x * scaleX}px;
-                            top: ${this.y * scaleY}px;
-                        `
+            this.markerStyle = `left: ${this.x * scaleX}px; top: ${this.y * scaleY}px;`
         },
     
         init() {
@@ -35,7 +32,7 @@
         }
     }" x-init="init">
     <div class="relative inline-block">
-        <img x-ref="img" src="{{ asset($depot->map->image_path) }}" alt="Map" class="block max-w-full max-h-[500px]"
+        <img x-ref="img" src="{{ asset($depot->map->image_path) }}" class="block max-w-full max-h-[500px]"
             @load="update">
 
         <div class="map-marker" :style="markerStyle"></div>

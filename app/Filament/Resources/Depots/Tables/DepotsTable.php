@@ -78,13 +78,15 @@ class DepotsTable
                 Group::make('map.region.name')->collapsible(),
                 Group::make('map.name')->collapsible(),
             ])
+            ->recordAction('viewOnMap')
             ->recordActions([
                 Action::make('viewOnMap')
                     ->label('View on map')
                     ->icon('heroicon-o-map')
-                    ->modalHeading(fn($record) => $record->type->getLabel())
+                    ->modalHeading('')
                     ->modalSubmitAction(false)
-                    ->modalCancelActionLabel('Close')
+                    ->modalCancelAction(false)
+                    ->closeModalByClickingAway(true)
                     ->modalContent(fn($record) => view('depot-map.depot-map', [
                         'depot' => $record,
                     ]))
