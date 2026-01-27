@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('resources', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedInteger('slots');
+            $table->unsignedInteger('tons');
+            $table->unsignedInteger('size');
             // $table->boolean('requires_special')->default(false);
             $table->timestamps();
         });

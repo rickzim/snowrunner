@@ -20,6 +20,6 @@ class Resource extends Model
 
     protected function displayName(): Attribute
     {
-        return Attribute::get(fn() => "{$this->name} [{$this->slots}]");
+        return Attribute::get(fn() => "{$this->name} [{$this->size}]");
     }
 }
