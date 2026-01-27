@@ -58,6 +58,7 @@ class AppPanelProvider extends PanelProvider
             ])
             ->assets([
                 Css::make('resources-css', asset('css/resources.css')),
+                Css::make('depot-css', asset('css/depot.css')),
             ]);
     }
 }

@@ -25,6 +25,18 @@ class Depot extends Model
         return $this->belongsTo(Map::class);
     }
 
+    public function region()
+    {
+        return $this->hasOneThrough(
+            Region::class,
+            Map::class,
+            'id',        // maps.id
+            'id',        // regions.id
+            'map_id',    // depots.map_id
+            'region_id'  // maps.region_id
+        );
+    }
+
     public function resources(): BelongsToMany
     {
         return $this->belongsToMany(Resource::class);

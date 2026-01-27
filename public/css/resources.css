@@ -14,7 +14,8 @@
 
 .resource-row.is-active {
     opacity: 1;
-    background-color: rgb(225 113 0 / 75%);
+    color: #fff;
+    background-color: rgb(225 113 0 / 100%);
 }
 
 .resource-badge {
@@ -37,7 +38,7 @@
     position: absolute;
     top: -4px;
     left: -4px;
-    background: rgb(17 24 39);
+    background: rgb(69 83 114);
     color: white;
     font-size: 10px;
     font-weight: 600;

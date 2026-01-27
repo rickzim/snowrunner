@@ -4,12 +4,16 @@ namespace App\Filament\Resources\Depots\Tables;
 
 use Filament\Tables\Table;
 use Filament\Actions\EditAction;
+use Filament\Tables\Grouping\Group;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
+use App\Filament\Tables\Columns\DepotColumn;
 use App\Filament\Tables\Columns\ResourceColumn;
+use App\Models\Region;
 
 class DepotsTable
 {
@@ -17,15 +21,11 @@ class DepotsTable
     {
         return $table
             ->columns([
-                TextColumn::make('type')
-                    ->badge()
-                    ->searchable(),
-
-                TextColumn::make('description')
-                    ->searchable(),
-
                 TextColumn::make('map.name')
-                    ->searchable(),
+                    ->toggleable(isToggledHiddenByDefault: false),
+
+                DepotColumn::make('type')
+                    ->label('Depot'),
 
                 // TextColumn::make('resources.display_name')
                 //     ->badge()
@@ -47,25 +47,38 @@ class DepotsTable
                 ResourceColumn::make('resources'),
 
                 ToggleColumn::make('is_unlocked'),
-
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->striped()
             ->filters([
+                SelectFilter::make('region_id')
+                    ->relationship('region', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->indicateUsing(function (array $data): ?string {
+                        if (! $data['value']) {
+                            return null;
+                        }
+
+
+                        return 'Region: ' . Region::findOrFail($data['value'])->name;
+                    }),
+
                 SelectFilter::make('resource_id')
+                    ->label('Resources')
                     ->relationship('resources', 'name')
                     ->multiple()
                     ->searchable()
                     ->preload(),
+
+                TernaryFilter::make('is_unlocked')
+                    ->default(true)
             ], \Filament\Tables\Enums\FiltersLayout::AboveContent)
-            ->deferFilters(false)
+            ->defaultGroup('map.name')
+            ->groups([
+                Group::make('map.region.name')->collapsible(),
+                Group::make('map.name')->collapsible(),
+            ])
+
             ->recordActions([
                 // EditAction::make(),
             ])
