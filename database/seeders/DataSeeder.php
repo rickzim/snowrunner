@@ -39,7 +39,7 @@ class DataSeeder extends Seeder
             'name' => 'Black River',
             'width' => 1000,
             'height' => 1000,
-            'image_path' => 'black-river.webp'
+            'image_path' => 'black_river_blank.webp'
         ]);
         static::createDepot($map, DepotType::FACTORY, ['Service Spare Parts'], 910, 180);
         static::createDepot($map, DepotType::WAREHOUSE, ['Bricks', 'Concrete Blocks', 'Metal Beams', 'Service Spare Parts'], 880, 610);
@@ -51,7 +51,12 @@ class DataSeeder extends Seeder
         /**
          * Smithville Dam
          */
-        $map = $region->maps()->create(['name' => 'Smithville Dam']);
+        $map = $region->maps()->create([
+            'name' => 'Smithville Dam',
+            'width' => 1000,
+            'height' => 1000,
+            'image_path' => 'smithville_dam_blank.webp'
+        ]);
         static::createDepot($map, DepotType::LOGISTICS_BASE, ['Drilling Spare Parts']);
         static::createDepot($map, DepotType::QUARRY_LOADING_ZONE, ['Cargo Container']);
         static::createDepot($map, DepotType::QUARRY, ['Cement']);
@@ -66,7 +71,12 @@ class DataSeeder extends Seeder
         /**
          * Island Lake
          */
-        $map = $region->maps()->create(['name' => 'Island Lake']);
+        $map = $region->maps()->create([
+            'name' => 'Island Lake',
+            'width' => 1000,
+            'height' => 500,
+            'image_path' => 'island_lake_blank.webp'
+        ]);
         static::createDepot($map, DepotType::SAWMILL, ['Wooden Planks']);
         static::createDepot($map, DepotType::WAREHOUSE, ['Drilling Equipment']);
         static::createDepot($map, DepotType::ABANDONED_DRILLING_SITE, ['Drilling Equipment']);
@@ -79,7 +89,12 @@ class DataSeeder extends Seeder
         /**
          * Drummond Island
          */
-        $map = $region->maps()->create(['name' => 'Drummond Island']);
+        $map = $region->maps()->create([
+            'name' => 'Drummond Island',
+            'width' => 1000,
+            'height' => 1000,
+            'image_path' => 'drummond_island_blank.webp'
+        ]);
         static::createDepot($map, DepotType::SAWMILL, ['Oversized Cargo']);
         static::createDepot($map, DepotType::LOG_STATION, ['Wooden Planks']);
         static::createDepot($map, DepotType::LOG_STATION, ['Long Logs']);
@@ -88,13 +103,18 @@ class DataSeeder extends Seeder
     private function createAlaska()
     {
         $region = Region::create([
-            'name' => 'Alaska, USA',
+            'name' => 'Alaska, USA'
         ]);
 
         /**
          * North Port
          */
-        $map = $region->maps()->create(['name' => 'North Port']);
+        $map = $region->maps()->create([
+            'name' => 'North Port',
+            'width' => 1000,
+            'height' => 1000,
+            'image_path' => 'north_port_blank.webp'
+        ]);
         static::createDepot($map, DepotType::PORT, ['Large Pipe', 'Consumables', 'Oversized Cargo', 'Drilling Equipment', 'Cargo Container']);
     }
 
