@@ -44,7 +44,6 @@ new class extends Component {
                 'map-marker',
                 'active-marker' => $depot->id === $selectedDepot,
             ]) @style(['left:' . $coords['x'] . 'px', 'top:' . $coords['y'] . 'px']) title="{{ $depot->type->name }}">
-
                 <img src="{{ asset($depot->icon_path) }}" alt="{{ $depot->type->name }}">
             </div>
         @endforeach
