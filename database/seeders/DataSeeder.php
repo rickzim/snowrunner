@@ -41,12 +41,12 @@ class DataSeeder extends Seeder
             'height' => 1000,
             'image_path' => 'black-river.webp'
         ]);
-        static::createDepot($map, DepotType::FACTORY, ['Service Spare Parts']);
-        static::createDepot($map, DepotType::WAREHOUSE, ['Bricks', 'Concrete Blocks', 'Metal Beams', 'Service Spare Parts']);
-        static::createDepot($map, DepotType::LOG_STATION, ['Long Logs', 'Medium Logs']);
-        static::createDepot($map, DepotType::FARM, ['Consumables']);
-        static::createDepot($map, DepotType::TOWN_STORAGE, ['Metal Beams']);
-        static::createDepot($map, DepotType::LUMBER_MILL, ['Wooden Planks']);
+        static::createDepot($map, DepotType::FACTORY, ['Service Spare Parts'], 910, 180);
+        static::createDepot($map, DepotType::WAREHOUSE, ['Bricks', 'Concrete Blocks', 'Metal Beams', 'Service Spare Parts'], 880, 610);
+        static::createDepot($map, DepotType::LOG_STATION, ['Long Logs', 'Medium Logs'], 685, 300);
+        static::createDepot($map, DepotType::FARM, ['Consumables'], 490, 835);
+        static::createDepot($map, DepotType::TOWN_STORAGE, ['Metal Beams'], 190, 440);
+        static::createDepot($map, DepotType::LUMBER_MILL, ['Wooden Planks'], 350, 570);
 
         /**
          * Smithville Dam
@@ -98,9 +98,13 @@ class DataSeeder extends Seeder
         static::createDepot($map, DepotType::PORT, ['Large Pipe', 'Consumables', 'Oversized Cargo', 'Drilling Equipment', 'Cargo Container']);
     }
 
-    private function createDepot(Map $map, DepotType $type, array $resources)
+    private function createDepot(Map $map, DepotType $type, array $resources, $x = 0, $y = 0)
     {
-        $depot = $map->depots()->create(['type' => $type]);
+        $depot = $map->depots()->create([
+            'type' => $type,
+            'map_x' => $x,
+            'map_y' => $y,
+        ]);
 
         $resourceIds = $this->resources
             ->whereIn('name', $resources)

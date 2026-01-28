@@ -1,19 +1,15 @@
 .map-marker {
     position: absolute;
-    width: 30px;
-    height: 30px;
-    padding: 2px;
+    width: 14px;
+    height: 14px;
+    background: rgb(225 113 0);
     border-radius: 9999px;
     transform: translate(-50%, -50%);
-}
-
-.active-marker {
-    background: rgb(225 113 0);
     box-shadow: 0 0 0 4px rgb(225 113 0 / 0.4);
     animation: zoom-in 250ms ease-out;
 }
 
-.active-marker::after {
+.map-marker::after {
     content: '';
     position: absolute;
     inset: -6px;

@@ -87,9 +87,12 @@ class DepotsTable
                     ->modalSubmitAction(false)
                     ->modalCancelAction(false)
                     ->closeModalByClickingAway(true)
-                    ->modalContent(fn($record) => view('filament.modals.depot-map', [
+                    ->modalContent(fn($record) => view('filament.modals.map', [
                         'depot' => $record,
                     ]))
+                // ->modalContent(fn($record) => view('filament.modals.depot-map', [
+                //     'depot' => $record,
+                // ]))
             ])
             ->toolbarActions([
                 //

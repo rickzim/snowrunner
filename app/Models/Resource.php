@@ -19,6 +19,11 @@ class Resource extends Model
 
     protected function displayName(): Attribute
     {
-        return Attribute::get(fn () => "{$this->name} [{$this->size}]");
+        return Attribute::get(fn() => "{$this->name} [{$this->size}]");
+    }
+
+    protected function iconPath(): Attribute
+    {
+        return Attribute::get(fn($value) => str($this->icon)->prepend('images/icons/resources')->toString());
     }
 }

@@ -41,7 +41,7 @@ enum DepotType: string implements HasLabel
 
     public function getIcon(): string
     {
-        $icon = match ($this) {
+        return match ($this) {
             self::FACTORY => 'factoryImg.png',
             self::WAREHOUSE => 'constructionWarehouseImg.png',
             self::LOG_STATION => 'lumberjackImg.png',
@@ -61,7 +61,5 @@ enum DepotType: string implements HasLabel
             self::PORT => 'townStorage.png',
             default => 'placeholder.png',
         };
-
-        return 'images/icons/depots/' . $icon;
     }
 }

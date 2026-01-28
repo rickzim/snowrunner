@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use App\Enums\DepotType;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Depot extends Model
@@ -40,5 +41,10 @@ class Depot extends Model
     public function resources(): BelongsToMany
     {
         return $this->belongsToMany(Resource::class);
+    }
+
+    protected function iconPath(): Attribute
+    {
+        return Attribute::get(fn($value) => str($this->type->getIcon())->prepend('images/icons/depots/')->toString());
     }
 }
