@@ -23,7 +23,7 @@ class DepotsTable
         return $table
             ->columns([
                 TextColumn::make('map.name')
-                    ->toggleable(isToggledHiddenByDefault: false),
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 DepotColumn::make('type')
                     ->label('Depot'),
@@ -50,9 +50,11 @@ class DepotsTable
                 ToggleColumn::make('is_unlocked'),
             ])
             ->striped()
+            ->paginated(false)
             ->filters([
                 SelectFilter::make('region_id')
                     ->relationship('region', 'name')
+                    ->default(Region::first()?->id ?? null)
                     ->searchable()
                     ->preload()
                     ->indicateUsing(function (array $data): ?string {

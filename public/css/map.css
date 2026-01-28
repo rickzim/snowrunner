@@ -1,7 +1,7 @@
 .map-marker {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     padding: 2px;
     border-radius: 9999px;
     transform: translate(-50%, -50%);

@@ -57,16 +57,16 @@ class DataSeeder extends Seeder
             'height' => 1000,
             'image_path' => 'smithville_dam_blank.webp'
         ]);
-        static::createDepot($map, DepotType::LOGISTICS_BASE, ['Drilling Spare Parts']);
-        static::createDepot($map, DepotType::QUARRY_LOADING_ZONE, ['Cargo Container']);
-        static::createDepot($map, DepotType::QUARRY, ['Cement']);
-        static::createDepot($map, DepotType::DRILLING_SITE, ['Fuel']);
-        static::createDepot($map, DepotType::WAREHOUSE, ['Concrete Slab', 'Bricks']);
-        static::createDepot($map, DepotType::WAREHOUSE, ['Metal Beams', 'Wooden Planks', 'Concrete Blocks']);
-        static::createDepot($map, DepotType::FARM, ['Consumables']);
-        static::createDepot($map, DepotType::SERVICE_HUB, ['Service Spare Parts', 'Vehicle Spare Parts', 'Oil Rig Drill']);
-        static::createDepot($map, DepotType::LOG_STATION, ['Medium Logs']);
-        static::createDepot($map, DepotType::FUEL_STATION, ['Fuel']);
+        static::createDepot($map, DepotType::LOGISTICS_BASE, ['Drilling Spare Parts'], 85, 100);
+        static::createDepot($map, DepotType::QUARRY_LOADING_ZONE, ['Cargo Container'], 480, 675);
+        static::createDepot($map, DepotType::QUARRY, ['Cement'], 490, 670);
+        static::createDepot($map, DepotType::DRILLING_SITE, ['Fuel'], 245, 385);
+        static::createDepot($map, DepotType::WAREHOUSE, ['Concrete Slab', 'Bricks'], 410, 490);
+        static::createDepot($map, DepotType::WAREHOUSE, ['Metal Beams', 'Wooden Planks', 'Concrete Blocks'], 110, 790);
+        static::createDepot($map, DepotType::FARM, ['Consumables'], 480, 180);
+        static::createDepot($map, DepotType::SERVICE_HUB, ['Service Spare Parts', 'Vehicle Spare Parts', 'Oil Rig Drill'], 910, 120);
+        static::createDepot($map, DepotType::LOG_STATION, ['Medium Logs'], 310, 120);
+        static::createDepot($map, DepotType::FUEL_STATION, ['Fuel'], 940, 320);
 
         /**
          * Island Lake
