@@ -1,6 +1,6 @@
 <div>
     @livewire('map', [
-        'map' => $depot->map,
-        'depot' => $depot,
+        'map' => $location->map,
+        'location' => $location,
     ])
 </div>

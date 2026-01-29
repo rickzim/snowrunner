@@ -1,15 +1,15 @@
-<div class="depot-row">
-    <div class="depot-icon">
+<div class="location-row">
+    <div class="location-icon">
         <img src="{{ asset($record->icon_path) }}" alt="{{ $record->type->getLabel() }}">
     </div>
 
-    <div class="depot-content">
-        <div class="depot-title">
+    <div class="location-content">
+        <div class="location-title">
             {{ $record->type->getLabel() }}
         </div>
 
         @if ($record->description)
-            <div class="depot-description">
+            <div class="location-description">
                 {{ $record->description }}
             </div>
         @endif

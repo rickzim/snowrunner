@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Enums\LocationIcon;
+use Exception;
 use App\Models\Map;
 use App\Models\Region;
-use App\Enums\DepotType;
 use App\Models\Resource;
-use Exception;
+use App\Enums\LocationType;
+use App\Enums\ResourceIcon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
 
@@ -22,108 +24,114 @@ class DataSeeder extends Seeder
         $this->createResources();
         $this->resources = Resource::get();
 
-        $this->createMichigan();
-        $this->createAlaska();
+        $region = Region::create(['name' => 'Michigan, USA']);
+        $this->createBlackRiver($region);
+
+        $region = Region::create(['name' => 'Alaska, USA']);
+        $this->createNorthPort($region);
     }
 
-    private function createMichigan()
+    private function createBlackRiver(Region $region)
     {
-        $region = Region::create([
-            'name' => 'Michigan, USA',
-        ]);
-
-        /**
-         * Black River
-         */
         $map = $region->maps()->create([
             'name' => 'Black River',
             'width' => 1000,
             'height' => 1000,
-            'image_path' => 'black_river_blank.webp'
+            'map_image' => 'black_river_blank.webp'
         ]);
-        static::createDepot($map, DepotType::FACTORY, ['Service Spare Parts'], 910, 180);
-        static::createDepot($map, DepotType::WAREHOUSE, ['Bricks', 'Concrete Blocks', 'Metal Beams', 'Service Spare Parts'], 880, 610);
-        static::createDepot($map, DepotType::LOG_STATION, ['Long Logs', 'Medium Logs'], 685, 300);
-        static::createDepot($map, DepotType::FARM, ['Consumables'], 490, 835);
-        static::createDepot($map, DepotType::TOWN_STORAGE, ['Metal Beams'], 190, 440);
-        static::createDepot($map, DepotType::LUMBER_MILL, ['Wooden Planks'], 350, 570);
+        static::createLocation($map, LocationType::FACTORY, LocationIcon::FACTORY, 910, 180, ['Service Spare Parts'], true, true);
+        static::createLocation($map, LocationType::WAREHOUSE, LocationIcon::CONSTRUCTION_WAREHOUSE, 880, 610, ['Bricks', 'Concrete Blocks', 'Metal Beams', 'Service Spare Parts']);
+        static::createLocation($map, LocationType::LOG_STATION, LocationIcon::LUMBERJACK, 685, 300, ['Long Logs', 'Medium Logs']);
+        static::createLocation($map, LocationType::FARM, LocationIcon::FARM, 490, 835, ['Consumables']);
+        static::createLocation($map, LocationType::FUEL_STATION, LocationIcon::FUEL_STATION, 0, 0);
+        static::createLocation($map, LocationType::TOWN_STORAGE, LocationIcon::TOWN_STORAGE, 190, 440, ['Metal Beams']);
+        static::createLocation($map, LocationType::LUMBER_MILL, LocationIcon::SAWMILL, 350, 570, ['Wooden Planks']);
+        static::createLocation($map, LocationType::FUEL_STATION, LocationIcon::FUEL_STATION);
+        static::createLocation($map, LocationType::TRAILER_STORE, LocationIcon::TRAILER_SHOP);
+        static::createLocation($map, LocationType::TRAILER_STORE, LocationIcon::TRAILER_SHOP);
+        static::createLocation($map, LocationType::GATEWAY, LocationIcon::GATEWAY, 115, 145, description: 'Smithville Dam');
+    }
 
-        /**
-         * Smithville Dam
-         */
-        $map = $region->maps()->create([
-            'name' => 'Smithville Dam',
-            'width' => 1000,
-            'height' => 1000,
-            'image_path' => 'smithville_dam_blank.webp'
-        ]);
-        static::createDepot($map, DepotType::LOGISTICS_BASE, ['Drilling Spare Parts'], 85, 100);
-        static::createDepot($map, DepotType::QUARRY_LOADING_ZONE, ['Cargo Container'], 480, 675);
-        static::createDepot($map, DepotType::QUARRY, ['Cement'], 490, 670);
-        static::createDepot($map, DepotType::DRILLING_SITE, ['Fuel'], 245, 385);
-        static::createDepot($map, DepotType::WAREHOUSE, ['Concrete Slab', 'Bricks'], 410, 490);
-        static::createDepot($map, DepotType::WAREHOUSE, ['Metal Beams', 'Wooden Planks', 'Concrete Blocks'], 110, 790);
-        static::createDepot($map, DepotType::FARM, ['Consumables'], 480, 180);
-        static::createDepot($map, DepotType::SERVICE_HUB, ['Service Spare Parts', 'Vehicle Spare Parts', 'Oil Rig Drill'], 910, 120);
-        static::createDepot($map, DepotType::LOG_STATION, ['Medium Logs'], 310, 120);
-        static::createDepot($map, DepotType::FUEL_STATION, ['Fuel'], 940, 320);
+    private function createSmithvilleDam(Region $region)
+    {
+        // $map = $region->maps()->create([
+        //     'name' => 'Smithville Dam',
+        //     'width' => 1000,
+        //     'height' => 1000,
+        //     'map_image' => 'smithville_dam_blank.webp'
+        // ]);
+        // static::createLocation($map, DepotType::LOGISTICS_BASE, ['Drilling Spare Parts'], 85, 100);
+        // static::createLocation($map, DepotType::QUARRY_LOADING_ZONE, ['Cargo Container'], 480, 675);
+        // static::createLocation($map, DepotType::QUARRY, ['Cement'], 490, 670);
+        // static::createLocation($map, DepotType::DRILLING_SITE, ['Fuel'], 245, 385);
+        // static::createLocation($map, DepotType::WAREHOUSE, ['Concrete Slab', 'Bricks'], 410, 490);
+        // static::createLocation($map, DepotType::WAREHOUSE, ['Metal Beams', 'Wooden Planks', 'Concrete Blocks'], 110, 790);
+        // static::createLocation($map, DepotType::FARM, ['Consumables'], 480, 180);
+        // static::createLocation($map, DepotType::SERVICE_HUB, ['Service Spare Parts', 'Vehicle Spare Parts', 'Oil Rig Drill'], 910, 120);
+        // static::createLocation($map, DepotType::LOG_STATION, ['Medium Logs'], 310, 120);
+        // static::createLocation($map, DepotType::FUEL_STATION, ['Fuel'], 940, 320);
+    }
 
-        /**
-         * Island Lake
-         */
+    private function createIslandLake(Region $region)
+    {
         $map = $region->maps()->create([
             'name' => 'Island Lake',
             'width' => 1000,
             'height' => 500,
-            'image_path' => 'island_lake_blank.webp'
+            'map_image' => 'island_lake_blank.webp'
         ]);
-        static::createDepot($map, DepotType::SAWMILL, ['Wooden Planks']);
-        static::createDepot($map, DepotType::WAREHOUSE, ['Drilling Equipment']);
-        static::createDepot($map, DepotType::ABANDONED_DRILLING_SITE, ['Drilling Equipment']);
-        static::createDepot($map, DepotType::FALLEN_ANTENNA, ['Cargo Container']);
-        static::createDepot($map, DepotType::ABANDONED_DRILLING_SITE, ['Drilling Equipment']);
-        static::createDepot($map, DepotType::ABANDONED_DRILLING_SITE, ['Drilling Equipment']);
-        static::createDepot($map, DepotType::LOG_STATION, ['Metal Beams', 'Wooden Planks']);
-        static::createDepot($map, DepotType::LOG_STATION, ['Medium Logs']);
-
-        /**
-         * Drummond Island
-         */
+        // static::createLocation($map, DepotType::SAWMILL, ['Wooden Planks']);
+        // static::createLocation($map, DepotType::WAREHOUSE, ['Drilling Equipment']);
+        // static::createLocation($map, DepotType::ABANDONED_DRILLING_SITE, ['Drilling Equipment']);
+        // static::createLocation($map, DepotType::FALLEN_ANTENNA, ['Cargo Container']);
+        // static::createLocation($map, DepotType::ABANDONED_DRILLING_SITE, ['Drilling Equipment']);
+        // static::createLocation($map, DepotType::ABANDONED_DRILLING_SITE, ['Drilling Equipment']);
+        // static::createLocation($map, DepotType::LOG_STATION, ['Metal Beams', 'Wooden Planks']);
+        // static::createLocation($map, DepotType::LOG_STATION, ['Medium Logs']);
+    }
+    private function createDrummondIsland(Region $region)
+    {
         $map = $region->maps()->create([
             'name' => 'Drummond Island',
             'width' => 1000,
             'height' => 1000,
-            'image_path' => 'drummond_island_blank.webp'
+            'map_image' => 'drummond_island_blank.webp'
         ]);
-        static::createDepot($map, DepotType::SAWMILL, ['Oversized Cargo']);
-        static::createDepot($map, DepotType::LOG_STATION, ['Wooden Planks']);
-        static::createDepot($map, DepotType::LOG_STATION, ['Long Logs']);
+        // static::createLocation($map, DepotType::SAWMILL, ['Oversized Cargo']);
+        // static::createLocation($map, DepotType::LOG_STATION, ['Wooden Planks']);
+        // static::createLocation($map, DepotType::LOG_STATION, ['Long Logs']);
     }
 
-    private function createAlaska()
+    private function createNorthPort(Region $region)
     {
-        $region = Region::create([
-            'name' => 'Alaska, USA'
-        ]);
-
-        /**
-         * North Port
-         */
-        $map = $region->maps()->create([
-            'name' => 'North Port',
-            'width' => 1000,
-            'height' => 1000,
-            'image_path' => 'north_port_blank.webp'
-        ]);
-        static::createDepot($map, DepotType::PORT, ['Large Pipe', 'Consumables', 'Oversized Cargo', 'Drilling Equipment', 'Cargo Container']);
+        // $map = $region->maps()->create([
+        //     'name' => 'North Port',
+        //     'width' => 1000,
+        //     'height' => 1000,
+        //     'map_image' => 'north_port_blank.webp'
+        // ]);
+        // static::createLocation($map, DepotType::PORT, ['Large Pipe', 'Consumables', 'Oversized Cargo', 'Drilling Equipment', 'Cargo Container']);
     }
 
-    private function createDepot(Map $map, DepotType $type, array $resources, $x = 0, $y = 0)
-    {
-        $depot = $map->depots()->create([
+    private function createLocation(
+        Map $map,
+        LocationType $type,
+        ?LocationIcon $icon,
+        int $x = 0,
+        int $y = 0,
+        array $resources = [],
+        bool $isLockable = false,
+        bool $isLocked = false,
+        ?string $description = null
+    ) {
+        $locations = $map->locations()->create([
             'type' => $type,
+            'description' => $description,
+            'icon' => $icon,
             'map_x' => $x,
             'map_y' => $y,
+            'is_lockable' => $isLockable,
+            'is_locked' => $isLocked,
         ]);
 
         $resourceIds = $this->resources
@@ -134,42 +142,42 @@ class DataSeeder extends Seeder
             throw new Exception('found missing resources');
         }
 
-        $depot->resources()->attach($resourceIds);
+        $locations->resources()->attach($resourceIds);
     }
 
     private function createResources()
     {
         collect([
-            ['name' => 'Bricks', 'tons' => 1, 'size' => 1, 'icon' => 'cargoTypeBrick40.png'],
-            ['name' => 'Cement', 'tons' => 3, 'size' => 1, 'icon' => 'cargoTypeBags40.png'],
-            ['name' => 'Concrete Blocks', 'tons' => 3, 'size' => 1, 'icon' => 'cargoTypeBlock40.png'],
-            ['name' => 'Concrete Slab', 'tons' => 6, 'size' => 2, 'icon' => 'cargoTypeSlabBig40.png'],
-            ['name' => 'Packaged Sand', 'tons' => 3, 'size' => 1, 'icon' => 'cargoTypeSand40.png'],
-            ['name' => 'Consumables', 'tons' => 3, 'size' => 1, 'icon' => 'cargoTypeBigBox40.png'],
-            ['name' => 'Fuel', 'tons' => 2, 'size' => 1, 'icon' => 'cargoTypeBarrel40.png'],
-            ['name' => 'Oil Barrels', 'tons' => 2, 'size' => 1, 'icon' => 'cargoTypeBarrelMasut40.png'],
-            ['name' => 'Secure Container', 'tons' => 1, 'size' => 1, 'icon' => 'cargoTypeRadioactive40.png'],
-            ['name' => 'Service Spare Parts', 'tons' => 1, 'size' => 1, 'icon' => 'cargoTypeServiceSpareParts40.png'],
-            ['name' => 'Vehicle Spare Parts', 'tons' => 1, 'size' => 1, 'icon' => 'cargoTypeVehiclesSpareParts40.png'],
-            ['name' => 'Drilling Spare Parts', 'tons' => 1, 'size' => 1, 'icon' => 'cargoTypeSparePartsTown40.png'],
-            ['name' => 'Drilling Equipment', 'tons' => 10, 'size' => 4, 'icon' => 'cargoTypeContainerDrilling40.png'],
-            ['name' => 'Oil Rig Drill', 'tons' => 10, 'size' => 5, 'icon' => 'cargoTypeBigDrills40.png'],
-            ['name' => 'Metal Rolls', 'tons' => 1, 'size' => 1, 'icon' => 'cargoTypeSteelRoll40.png'],
-            ['name' => 'Metal Beams', 'tons' => 5, 'size' => 2, 'icon' => 'cargoTypeMetall40.png'],
-            ['name' => 'Small Pipes', 'tons' => 4, 'size' => 2, 'icon' => 'cargoTypePipe40.png'],
-            ['name' => 'Medium Pipes', 'tons' => 5, 'size' => 2, 'icon' => 'cargoTypePipeAverage40.png'],
-            ['name' => 'Large Pipe', 'tons' => 8, 'size' => 4, 'icon' => 'cargoTypePipeBig40.png'],
-            ['name' => 'Rail Section', 'tons' => 1, 'size' => 5, 'icon' => 'cargoTypeRails40.png'],
-            ['name' => 'Industrial Boiler', 'tons' => 1, 'size' => 5, 'icon' => 'cargoTypeBoiler40.png'],
-            ['name' => 'Cabin', 'tons' => 3, 'size' => 2, 'icon' => 'cargoTypeChangeHouse40.png'],
-            ['name' => 'Cargo Container', 'tons' => 3, 'size' => 2, 'icon' => 'cargoTypeContainerAlt40.png'],
-            ['name' => 'Special Cargo', 'tons' => 3, 'size' => 2, 'icon' => 'cargoTypeContainerAlt40.png'],
-            ['name' => 'Oversized Cargo', 'tons' => 10, 'size' => 4, 'icon' => 'cargoTypeContainerAlt40.png'],
-            ['name' => 'Cellulose', 'tons' => 2, 'size' => 1, 'icon' => 'cargoTypePaper40.png'],
-            ['name' => 'Wooden Planks', 'tons' => 1, 'size' => 1, 'icon' => 'cargoTypePlank40.png'],
-            ['name' => 'Short Logs', 'tons' => 4, 'size' => 2, 'icon' => 'cargoTypeLogLow40.png'],
-            ['name' => 'Medium Logs', 'tons' => 8, 'size' => 3, 'icon' => 'cargoTypeLogMid40.png'],
-            ['name' => 'Long Logs', 'tons' => 12, 'size' => 5, 'icon' => 'cargoTypeLogLong40.png'],
+            ['name' => 'Bricks', 'tons' => 1, 'size' => 1, 'icon' => ResourceIcon::BRICK],
+            ['name' => 'Cement', 'tons' => 3, 'size' => 1, 'icon' => ResourceIcon::BAGS],
+            ['name' => 'Concrete Blocks', 'tons' => 3, 'size' => 1, 'icon' => ResourceIcon::BLOCK],
+            ['name' => 'Concrete Slab', 'tons' => 6, 'size' => 2, 'icon' => ResourceIcon::SLAB_BIG],
+            ['name' => 'Packaged Sand', 'tons' => 3, 'size' => 1, 'icon' => ResourceIcon::SAND],
+            ['name' => 'Consumables', 'tons' => 3, 'size' => 1, 'icon' => ResourceIcon::BIG_BOX],
+            ['name' => 'Fuel', 'tons' => 2, 'size' => 1, 'icon' => ResourceIcon::BARREL],
+            ['name' => 'Oil Barrels', 'tons' => 2, 'size' => 1, 'icon' => ResourceIcon::BARREL_MASUT],
+            ['name' => 'Secure Container', 'tons' => 1, 'size' => 1, 'icon' => ResourceIcon::RADIOACTIVE],
+            ['name' => 'Service Spare Parts', 'tons' => 1, 'size' => 1, 'icon' => ResourceIcon::SERVICE_SPARE_PARTS],
+            ['name' => 'Vehicle Spare Parts', 'tons' => 1, 'size' => 1, 'icon' => ResourceIcon::VEHICLES_SPARE_PARTS],
+            ['name' => 'Drilling Spare Parts', 'tons' => 1, 'size' => 1, 'icon' => ResourceIcon::SPARE_PARTS_TOWN],
+            ['name' => 'Drilling Equipment', 'tons' => 10, 'size' => 4, 'icon' => ResourceIcon::CONTAINER_DRILLING],
+            ['name' => 'Oil Rig Drill', 'tons' => 10, 'size' => 5, 'icon' => ResourceIcon::BIG_DRILLS],
+            ['name' => 'Metal Rolls', 'tons' => 1, 'size' => 1, 'icon' => ResourceIcon::STEEL_ROLL],
+            ['name' => 'Metal Beams', 'tons' => 5, 'size' => 2, 'icon' => ResourceIcon::METALL],
+            ['name' => 'Small Pipes', 'tons' => 4, 'size' => 2, 'icon' => ResourceIcon::PIPE],
+            ['name' => 'Medium Pipes', 'tons' => 5, 'size' => 2, 'icon' => ResourceIcon::PIPE_AVERAGE],
+            ['name' => 'Large Pipe', 'tons' => 8, 'size' => 4, 'icon' => ResourceIcon::PIPE_BIG],
+            ['name' => 'Rail Section', 'tons' => 1, 'size' => 5, 'icon' => ResourceIcon::RAILS],
+            ['name' => 'Industrial Boiler', 'tons' => 1, 'size' => 5, 'icon' => ResourceIcon::BOILER],
+            ['name' => 'Cabin', 'tons' => 3, 'size' => 2, 'icon' => ResourceIcon::CHANGE_HOUSE],
+            ['name' => 'Cargo Container', 'tons' => 3, 'size' => 2, 'icon' => ResourceIcon::CONTAINER_ALT],
+            ['name' => 'Special Cargo', 'tons' => 3, 'size' => 2, 'icon' => ResourceIcon::CONTAINER_ALT],
+            ['name' => 'Oversized Cargo', 'tons' => 10, 'size' => 4, 'icon' => ResourceIcon::CONTAINER_ALT],
+            ['name' => 'Cellulose', 'tons' => 2, 'size' => 1, 'icon' => ResourceIcon::PAPER],
+            ['name' => 'Wooden Planks', 'tons' => 1, 'size' => 1, 'icon' => ResourceIcon::PLANK],
+            ['name' => 'Short Logs', 'tons' => 4, 'size' => 2, 'icon' => ResourceIcon::LOG_LOW],
+            ['name' => 'Medium Logs', 'tons' => 8, 'size' => 3, 'icon' => ResourceIcon::LOG_MID],
+            ['name' => 'Long Logs', 'tons' => 12, 'size' => 5, 'icon' => ResourceIcon::LOG_LONG],
         ])->each(fn($item) => Resource::create($item));
     }
 }

@@ -1,4 +1,4 @@
-.depot-row {
+.location-row {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -6,7 +6,7 @@
     border-radius: 0.75rem;
 }
 
-.depot-icon {
+.location-icon {
     width: 42px;
     height: 42px;
     padding: 6px;
@@ -15,17 +15,17 @@
     flex-shrink: 0;
 }
 
-.depot-icon img {
+.location-icon img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
-.depot-title {
+.location-title {
     font-size: 0.875rem;
     font-weight: 600;
 }
 
-.depot-description {
+.location-description {
     font-size: 0.75rem;
 }

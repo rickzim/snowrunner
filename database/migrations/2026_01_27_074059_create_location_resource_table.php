@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Depot;
+use App\Models\Location;
 use App\Models\Resource;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,11 +14,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('depot_resource', function (Blueprint $table) {
-            // $table->id();
-            $table->foreignIdFor(Depot::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Resource::class)->constrained()->cascadeOnDelete();
-            // $table->timestamps();
+        Schema::create('location_resource', function (Blueprint $table) {
+            $table->foreignIdFor(Location::class)->constrained();
+            $table->foreignIdFor(Resource::class)->constrained();
+            $table->unsignedInteger('in_stock')->nullable();
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('depot_resource');
+        Schema::dropIfExists('location_resource');
     }
 };

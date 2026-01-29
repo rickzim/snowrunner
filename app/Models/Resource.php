@@ -14,7 +14,7 @@ class Resource extends Model
 
     public function resources(): BelongsToMany
     {
-        return $this->belongsToMany(Depot::class);
+        return $this->belongsToMany(Location::class);
     }
 
     protected function displayName(): Attribute
@@ -24,6 +24,6 @@ class Resource extends Model
 
     protected function iconPath(): Attribute
     {
-        return Attribute::get(fn($value) => str($this->icon)->prepend('images/icons/resources')->toString());
+        return Attribute::get(fn() => str($this->icon)->prepend('images/icons/resources')->toString());
     }
 }

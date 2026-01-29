@@ -57,9 +57,9 @@ class AppPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->assets([
-                Css::make('depot-css', asset('css/depot.css')),
+                Css::make('location-css', asset('css/location.css')),
                 Css::make('map-css', asset('css/map.css')),
-                Css::make('resources-css', asset('css/resources.css')),
+                Css::make('resource-css', asset('css/resource.css')),
             ]);
     }
 }

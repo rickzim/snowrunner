@@ -8,7 +8,8 @@
 }
 
 .active-marker {
-    background: rgb(225 113 0);
+    /* background: rgba(225, 112, 0, 0.137); */
+    background: rgb(225 113 0 / 0.4);
     box-shadow: 0 0 0 4px rgb(225 113 0 / 0.4);
     animation: zoom-in 250ms ease-out;
 }
@@ -19,6 +20,8 @@
     inset: -6px;
     border-radius: 9999px;
     border: 2px solid rgb(225 113 0);
+    /* rgb(225 113 0) */
+    /* #3388ff */
     animation: pulse 1.5s infinite;
 }
 

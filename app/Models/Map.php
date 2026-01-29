@@ -18,13 +18,13 @@ class Map extends Model
         return $this->belongsTo(Region::class);
     }
 
-    public function depots(): HasMany
+    public function locations(): HasMany
     {
-        return $this->hasMany(Depot::class);
+        return $this->hasMany(Location::class);
     }
 
-    protected function imagePath(): Attribute
+    protected function mapImagePath(): Attribute
     {
-        return Attribute::get(fn($value) => str($value)->prepend('images/maps/')->toString());
+        return Attribute::get(fn() => str($this->map_image)->prepend('images/maps/')->toString());
     }
 }

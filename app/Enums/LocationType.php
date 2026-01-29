@@ -4,8 +4,9 @@ namespace App\Enums;
 
 use Filament\Support\Contracts\HasLabel;
 
-enum DepotType: string implements HasLabel
+enum LocationType: string implements HasLabel
 {
+    case GATEWAY = 'GTWY';
     case FACTORY = 'FCTY';
     case WAREHOUSE = 'WRHS';
     case LOG_STATION = 'LGST';
@@ -37,29 +38,5 @@ enum DepotType: string implements HasLabel
     public function getLabel(): string
     {
         return str($this->name)->slug('_')->replace('_', ' ')->title();
-    }
-
-    public function getIcon(): string
-    {
-        return match ($this) {
-            self::FACTORY => 'factoryImg.png',
-            self::WAREHOUSE => 'constructionWarehouseImg.png',
-            self::LOG_STATION => 'lumberjackImg.png',
-            self::FARM => 'farmImg.png',
-            self::TOWN_STORAGE => 'townStorage.png',
-            self::LUMBER_MILL => 'sawmillImg.png',
-            self::LOGISTICS_BASE => 'townStorage.png',
-            self::QUARRY_LOADING_ZONE => 'townStorage.png',
-            self::QUARRY => 'taskSubImg40.png',
-            self::DRILLING_SITE => 'drillingSiteImg.png',
-            self::SERVICE_HUB => 'serviceHubImg.png',
-            self::FUEL_STATION => 'fuelStationImg.png',
-            self::SAWMILL => 'sawmillImg.png',
-            self::ABANDONED_DRILLING_SITE => 'drillingSiteImg.png',
-            self::FALLEN_ANTENNA => 'taskSubImg40.png',
-            self::ABANDONED_SHIP => 'flagImg.png',
-            self::PORT => 'townStorage.png',
-            default => 'placeholder.png',
-        };
     }
 }

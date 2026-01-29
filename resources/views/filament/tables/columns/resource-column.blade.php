@@ -15,12 +15,14 @@
                 <img src="{{ asset(!empty($resource->icon) ? 'images/icons/resources/' . $resource->icon : 'images/icons/resources/placeholder.png') }}"
                     alt="{{ $resource->name }}">
 
-                <span class="resource-size">
-                    {{ $resource->size }}
-                </span>
+                {{-- <span class="resource-tl">{{ is_null($resource->pivot->in_stock) ? '∞' : $resource->pivot->in_stock }}</span> --}}
+                <span class="resource-tl">{{ $resource->size }}</span>
             </div>
 
             <div class="text-xs text-center text-gray-400 w-full -mt-1">
+                <span class="stock-badge">
+                    {{ is_null($resource->pivot->in_stock) ? '∞' : $resource->pivot->in_stock }}
+                </span>
                 {{ $resource->name }}
             </div>
         </div>

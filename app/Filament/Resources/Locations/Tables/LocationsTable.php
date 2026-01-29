@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Depots\Tables;
+namespace App\Filament\Resources\Locations\Tables;
 
 use App\Models\Region;
 use Filament\Tables\Table;
@@ -9,14 +9,17 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Grouping\Group;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
-use App\Filament\Tables\Columns\DepotColumn;
+use App\Filament\Tables\Columns\LocationColumn;
 use App\Filament\Tables\Columns\ResourceColumn;
+use Filament\Support\Icons\Heroicon;
 
-class DepotsTable
+class LocationsTable
 {
     public static function configure(Table $table): Table
     {
@@ -25,8 +28,21 @@ class DepotsTable
                 TextColumn::make('map.name')
                     ->toggleable(isToggledHiddenByDefault: true),
 
-                DepotColumn::make('type')
-                    ->label('Depot'),
+                LocationColumn::make('type')
+                    ->label('Location'),
+
+                ToggleColumn::make('is_locked')
+                    ->wrapHeader()
+                    ->label('Status')
+                    ->onIcon(fn($record) => $record->is_lockable ? Heroicon::LockClosed : null)
+                    ->offIcon(fn($record) => $record->is_lockable ? Heroicon::LockOpen : null)
+                    ->onColor(fn($record) => $record->is_lockable ? 'danger' : null)
+                    ->offColor(fn($record) => $record->is_lockable ? 'success' : null)
+                    ->disabled(fn($record) => !$record->is_lockable),
+
+                ResourceColumn::make('resources'),
+
+
 
                 // TextColumn::make('resources.display_name')
                 //     ->badge()
@@ -44,10 +60,6 @@ class DepotsTable
                 //             ? 'primary'
                 //             : 'gray';
                 //     }),
-
-                ResourceColumn::make('resources'),
-
-                ToggleColumn::make('is_unlocked'),
             ])
             ->striped()
             ->paginated(false)
@@ -71,9 +83,6 @@ class DepotsTable
                     ->multiple()
                     ->searchable()
                     ->preload(),
-
-                TernaryFilter::make('is_unlocked')
-                    ->default(true)
             ], \Filament\Tables\Enums\FiltersLayout::AboveContent)
             ->defaultGroup('map.name')
             ->groups([
@@ -90,11 +99,8 @@ class DepotsTable
                     ->modalCancelAction(false)
                     ->closeModalByClickingAway(true)
                     ->modalContent(fn($record) => view('filament.modals.map', [
-                        'depot' => $record,
+                        'location' => $record,
                     ]))
-                // ->modalContent(fn($record) => view('filament.modals.depot-map', [
-                //     'depot' => $record,
-                // ]))
             ])
             ->toolbarActions([
                 //

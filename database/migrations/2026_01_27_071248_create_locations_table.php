@@ -1,9 +1,9 @@
 <?php
 
 use App\Models\Map;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -12,14 +12,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('depots', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('type');
             $table->string('description')->nullable();
+            $table->string('icon')->nullable();
             $table->foreignIdFor(Map::class)->constrained()->cascadeOnDelete();
             $table->unsignedInteger('map_x')->default(0);
             $table->unsignedInteger('map_y')->default(0);
-            $table->boolean('is_unlocked')->default(true);
+            $table->boolean('is_lockable')->default(false);
+            $table->boolean('is_locked')->default(false);
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('depots');
+        Schema::dropIfExists('locations');
     }
 };
