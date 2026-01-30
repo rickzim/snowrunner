@@ -2,12 +2,14 @@
 
 namespace App\Filament\Resources\Locations\Tables;
 
-use App\Enums\LocationType;
 use App\Models\Region;
 use Filament\Tables\Table;
+use App\Enums\LocationType;
 use Filament\Actions\Action;
 use Filament\Actions\EditAction;
 use PhpParser\Node\Expr\Ternary;
+use Filament\Actions\ActionGroup;
+use Filament\Support\Enums\Width;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Grouping\Group;
 use Filament\Support\Icons\Heroicon;
@@ -23,7 +25,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Filters\TernaryFilter;
 use App\Filament\Tables\Columns\LocationColumn;
 use App\Filament\Tables\Columns\ResourceColumn;
-use Filament\Actions\ActionGroup;
 
 class LocationsTable
 {
@@ -102,6 +103,7 @@ class LocationsTable
                     ->modalSubmitAction(false)
                     ->modalCancelAction(false)
                     ->closeModalByClickingAway(true)
+                    ->modalWidth(Width::FiveExtraLarge)
                     ->modalContent(fn($record) => view('filament.modals.map', [
                         'location' => $record,
                     ])),
