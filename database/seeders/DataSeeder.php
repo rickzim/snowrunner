@@ -91,47 +91,47 @@ class DataSeeder extends Seeder
     {
         $map = $region->maps()->create([
             'name' => 'Island Lake',
-            'width' => 1000,
-            'height' => 500,
-            'map_image' => 'island_lake_blank.webp'
+            'width' => 4032,
+            'height' => 2016,
+            'map_image' => 'island_lake_blank_4032_2016.webp'
         ]);
-        static::createLocation($map, LocationType::SAWMILL, LocationIcon::SAWMILL, 000, 000, ['Wooden Planks'], true, true);
-        static::createLocation($map, LocationType::WAREHOUSE, LocationIcon::CONSTRUCTION_WAREHOUSE, 000, 000, ['Drilling Equipment:1'], true, true);
-        static::createLocation($map, LocationType::ABANDONED_DRILLING_SITE, LocationIcon::DRILLING_SITE, 000, 000, ['Drilling Equipment:1']);
-        static::createLocation($map, LocationType::FALLEN_ANTENNA, LocationIcon::TASK_SUB, 000, 000, ['Cargo Container']);
-        static::createLocation($map, LocationType::TRAILER_STORE, LocationIcon::TRAILER_SHOP, 000, 000);
-        static::createLocation($map, LocationType::ABANDONED_DRILLING_SITE, LocationIcon::DRILLING_SITE, 000, 000, ['Drilling Equipment:1']);
-        static::createLocation($map, LocationType::ABANDONED_DRILLING_SITE, LocationIcon::DRILLING_SITE, 000, 000, ['Drilling Equipment']);
-        static::createLocation($map, LocationType::LOG_STATION, LocationIcon::TOWN_STORAGE, 000, 000, ['Metal Beams', 'Wooden Planks']);
-        static::createLocation($map, LocationType::LOG_STATION, LocationIcon::LUMBERJACK, 000, 000, ['Medium Logs']);
-        static::createLocation($map, LocationType::GARAGE_ENTRANCE, LocationIcon::GATEWAY, 000, 000, description: 'Smithville Dam');
-        static::createLocation($map, LocationType::GARAGE_ENTRANCE, LocationIcon::GATEWAY, 000, 000, description: 'Drummond Island');
+        static::createLocation($map, LocationType::SAWMILL, LocationIcon::SAWMILL, 2950, 1750, ['Wooden Planks'], true, true);
+        static::createLocation($map, LocationType::WAREHOUSE, LocationIcon::CONSTRUCTION_WAREHOUSE, 3800, 1760, ['Drilling Equipment:1'], true, true);
+        static::createLocation($map, LocationType::ABANDONED_DRILLING_SITE, LocationIcon::DRILLING_SITE, 3475, 490, ['Drilling Equipment:1']);
+        static::createLocation($map, LocationType::FALLEN_ANTENNA, LocationIcon::TASK_SUB, 2310, 990, ['Cargo Container']);
+        static::createLocation($map, LocationType::TRAILER_STORE, LocationIcon::TRAILER_SHOP, 3470, 1860);
+        static::createLocation($map, LocationType::ABANDONED_DRILLING_SITE, LocationIcon::DRILLING_SITE, 2445, 645, ['Drilling Equipment:1']);
+        static::createLocation($map, LocationType::ABANDONED_DRILLING_SITE, LocationIcon::DRILLING_SITE, 1355, 765, ['Drilling Equipment']);
+        static::createLocation($map, LocationType::LOG_STATION, LocationIcon::TOWN_STORAGE, 2170, 320, ['Metal Beams', 'Wooden Planks']);
+        static::createLocation($map, LocationType::LOG_STATION, LocationIcon::LUMBERJACK, 3110, 325, ['Medium Logs']);
+        static::createLocation($map, LocationType::GARAGE_ENTRANCE, LocationIcon::GATEWAY, 3720, 1260, description: 'Smithville Dam');
+        static::createLocation($map, LocationType::GARAGE_ENTRANCE, LocationIcon::GATEWAY, 520, 700, description: 'Drummond Island');
     }
     private function createDrummondIsland(Region $region)
     {
         $map = $region->maps()->create([
             'name' => 'Drummond Island',
-            'width' => 1000,
-            'height' => 1000,
-            'map_image' => 'drummond_island_blank.webp'
+            'width' => 2016,
+            'height' => 2016,
+            'map_image' => 'drummond_island_blank_2016_2016.webp'
         ]);
 
-        static::createLocation($map, LocationType::ABANDONED_SHIP, LocationIcon::FLAG, 000, 000, ['Oversized Cargo'], true, true);
-        static::createLocation($map, LocationType::FUEL_STATION, LocationIcon::FUEL_STATION, 000, 000);
-        static::createLocation($map, LocationType::LOG_STATION, LocationIcon::TOWN_STORAGE, 000, 000, ['Wooden Planks']);
-        static::createLocation($map, LocationType::LOG_STATION, LocationIcon::LUMBERJACK, 000, 000, ['Long Logs']);
-        static::createLocation($map, LocationType::RESUPPLY_ZONE, LocationIcon::HARD_RESUPPLY, 000, 000);
-        static::createLocation($map, LocationType::GATEWAY, LocationIcon::GATEWAY, 000, 000, description: 'Smithville Dam');
-        static::createLocation($map, LocationType::GATEWAY, LocationIcon::GATEWAY, 000, 000, description: 'Island Lake');
+        static::createLocation($map, LocationType::ABANDONED_SHIP, LocationIcon::FLAG, 340, 1100, ['Oversized Cargo'], true, true);
+        static::createLocation($map, LocationType::FUEL_STATION, LocationIcon::FUEL_STATION, 1370, 1700);
+        static::createLocation($map, LocationType::LOG_STATION, LocationIcon::TOWN_STORAGE, 465, 1850, ['Wooden Planks']);
+        static::createLocation($map, LocationType::LOG_STATION, LocationIcon::LUMBERJACK, 550, 1780, ['Long Logs']);
+        static::createLocation($map, LocationType::RESUPPLY_ZONE, LocationIcon::HARD_RESUPPLY, 1660, 385);
+        static::createLocation($map, LocationType::GATEWAY, LocationIcon::GATEWAY, 145, 150, description: 'Smithville Dam');
+        static::createLocation($map, LocationType::GATEWAY, LocationIcon::GATEWAY, 130, 1920, description: 'Island Lake');
     }
 
     // private function createNorthPort(Region $region)
     // {
     //     $map = $region->maps()->create([
     //         'name' => 'North Port',
-    //         'width' => 1000,
-    //         'height' => 1000,
-    //         'map_image' => 'north_port_blank.webp'
+    //         'width' => 4032,
+    //         'height' => 4032,
+    //         'map_image' => 'north_port_blank_4032_4032.webp'
     //     ]);
     // static::createLocation($map, LocationType::XXX, LocationIcon::XXX, 000, 000, null, true, true);
     //     static::createLocation($map, LocationType::PORT, ['Large Pipe', 'Consumables', 'Oversized Cargo', 'Drilling Equipment', 'Cargo Container']);
