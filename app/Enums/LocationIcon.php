@@ -4,7 +4,6 @@ namespace App\Enums;
 
 enum LocationIcon: string
 {
-    case GATEWAY = 'gatewayImg.png';
     case CONSTRUCTION_WAREHOUSE = 'constructionWarehouseImg.png';
     case DRILLING_SITE = 'drillingSiteImg.png';
     case FACTORY = 'factoryImg.png';
@@ -17,4 +16,7 @@ enum LocationIcon: string
     case FUEL_STATION = 'fuelStationImg.png';
     case TRAILER_SHOP = 'trailerShopImg40.png';
     case FLAG = 'flagImg.png';
+    case GATEWAY = 'gatewayImg.png';
+    case GARAGE = 'garageImg.png';
+    case HARD_RESUPPLY = 'hardResupply.png';
 }

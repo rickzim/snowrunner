@@ -2,22 +2,28 @@
 
 namespace App\Filament\Resources\Locations\Tables;
 
+use App\Enums\LocationType;
 use App\Models\Region;
 use Filament\Tables\Table;
 use Filament\Actions\Action;
 use Filament\Actions\EditAction;
+use PhpParser\Node\Expr\Ternary;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Grouping\Group;
+use Filament\Support\Icons\Heroicon;
 use Filament\Actions\BulkActionGroup;
+use Filament\Forms\Components\Select;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Filters\TernaryFilter;
 use App\Filament\Tables\Columns\LocationColumn;
 use App\Filament\Tables\Columns\ResourceColumn;
-use Filament\Support\Icons\Heroicon;
+use Filament\Actions\ActionGroup;
 
 class LocationsTable
 {
@@ -41,8 +47,6 @@ class LocationsTable
                     ->disabled(fn($record) => !$record->is_lockable),
 
                 ResourceColumn::make('resources'),
-
-
 
                 // TextColumn::make('resources.display_name')
                 //     ->badge()
@@ -100,7 +104,12 @@ class LocationsTable
                     ->closeModalByClickingAway(true)
                     ->modalContent(fn($record) => view('filament.modals.map', [
                         'location' => $record,
-                    ]))
+                    ])),
+                ActionGroup::make([
+                    Action::make('unlock'),
+                    Action::make('lock'),
+                    Action::make('markAsEmpty'),
+                ])
             ])
             ->toolbarActions([
                 //

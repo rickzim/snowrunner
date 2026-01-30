@@ -18,8 +18,8 @@ new class extends Component {
         $scaleY = $this->map->height > 0 ? 848 / $this->map->height : 1;
 
         return [
-            'x' => ($location->map_x + 24) * $scaleX,
-            'y' => ($location->map_y + 24) * $scaleY,
+            'x' => $location->map_x * $scaleX + 24,
+            'y' => $location->map_y * $scaleY + 24,
         ];
     }
 
@@ -39,11 +39,24 @@ new class extends Component {
         @foreach ($map->locations as $location)
             @php
                 $coords = $this->getScaledCoordinates($location);
+                $title = $location->type->getLabel();
+
+                if ($location->description) {
+                    $title = $title . ' - ' . $location->description;
+                }
+
+                if ($location->resources) {
+                    foreach ($location->resources as $resource) {
+                        $title = $title . PHP_EOL . $resource->name . ' [' . $resource->size . ']';
+                    }
+                }
+
             @endphp
             <div @class([
                 'map-marker',
                 'active-marker' => $location->id === $selectedLocation,
-            ]) @style(['left:' . $coords['x'] . 'px', 'top:' . $coords['y'] . 'px']) title="{{ $location->type->name }}">
+                'locked' => $location->is_locked,
+            ]) @style(['left:' . $coords['x'] . 'px', 'top:' . $coords['y'] . 'px']) title="{{ $title }}">
                 <img src="{{ asset($location->icon_path) }}" alt="{{ $location->type->name }}">
             </div>
         @endforeach

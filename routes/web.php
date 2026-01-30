@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/tinker', function () {
+    //
+});
+
 Route::get('/', function () {
     if (App::environment(['local'])) {
         Auth::loginUsingId(1);

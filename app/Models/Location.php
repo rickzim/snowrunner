@@ -17,12 +17,12 @@ class Location extends Model
     /** @use HasFactory<\Database\Factories\LocationFactory> */
     use HasFactory;
 
-    use HasFactory;
-
     protected function casts(): array
     {
         return [
             'type' => LocationType::class,
+            'is_lockable' => 'boolean',
+            'is_locked' => 'boolean',
         ];
     }
 

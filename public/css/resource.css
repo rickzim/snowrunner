@@ -18,6 +18,20 @@
     background-color: rgb(225 113 0 / 100%);
 }
 
+.text-block {
+    display: flex;
+    align-items: center;
+    gap: 0.30rem;
+}
+
+.small-badge {
+    background: #576480;
+    padding: 2px 5px;
+    font-size: 0.75em;
+    color: white;
+    border-radius: 5px;
+}
+
 .resource-badge {
     position: relative;
     width: 36px;

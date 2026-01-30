@@ -1,17 +1,22 @@
 .map-marker {
     position: absolute;
-    width: 32px;
-    height: 32px;
-    padding: 2px;
+    width: 34px;
+    height: 34px;
+    padding: 6px;
     border-radius: 9999px;
     transform: translate(-50%, -50%);
 }
 
+.locked {
+    background: #ff000082 !important;
+}
+
 .active-marker {
-    /* background: rgba(225, 112, 0, 0.137); */
-    background: rgb(225 113 0 / 0.4);
+    background: rgba(225, 112, 0, 0.137);
+    /* background: rgb(225 113 0 / 0.4); */
     box-shadow: 0 0 0 4px rgb(225 113 0 / 0.4);
     animation: zoom-in 250ms ease-out;
+    z-index: 100;
 }
 
 .active-marker::after {
@@ -20,8 +25,6 @@
     inset: -6px;
     border-radius: 9999px;
     border: 2px solid rgb(225 113 0);
-    /* rgb(225 113 0) */
-    /* #3388ff */
     animation: pulse 1.5s infinite;
 }
 
